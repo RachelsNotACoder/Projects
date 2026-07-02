@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer segments &amp; personas — Userflow cheat sheet</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAA4ADgDACIAAREBAhEB/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMAAAERAhEAPwDvdZ1i4vruQCRlgU4VAeMVWjsdSljDx21yyMMhgjYNQpEZ75Yh1eQL+ZxXo1lew3RnjiUr9nkMTA47entXu1akcLCKjG/9L/M8qEHXk3KVjz2a0v7ePzJoLiNOm5lIFW9H1m4sbuMGRmgYgMhPGK6m7uodXsXt4w4jkuFgL8fMAckr+APNcXd26WuqS28bFkjlKgnrwaqlVhiIuM428vu1/EmpCVFqUXf+v+Aem0UUV4B64UUUUAeZWlwlpqkVw6lljk3EDr1rqmgstVIvU02+IlHJjdFD9uRvrA1jRrixu5CI2aBiSrgcYqnFdX8Eflwz3MaddqOwH5Cvfq03XhGdKWp5MJqlJxqLQ7uGNjLb4tGtLW1DMA5Xk4I4Ck9iea4F5TPetKeryFvzOakkvNRlQpJc3ToeCrSMQat6No9xfXcZMbLApyzkcYpYeg6HNOo1/XcK1VVbRgj0KiiivBPWCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//Z">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Userflow brand palette */
+    --dark-900:   #121941;
+    --dark-500:   #52577A;
+    --dark-300:   #8B90B0;
+    --blue-100:   #D1E5FF;
+    --blue-400:   #4A90EB;
+    --blue-500:   #236FD4;
+    --blue-800:   #105ED5;
+    --blue-900:   #0F334D;
+    --lav-50:     #F3F2FF;
+    --lav-100:    #E1DEFF;
+    --lav-300:    #BFBAFF;
+    --lav-600:    #8A38F5;
+    --lav-700:    #4E2656;
+    --green-100:  #D5FEC0;
+    --green-200:  #ECFDE2;
+    --green-300:  #23D777;
+    --green-600:  #B4EA99;
+    --orange-100: #F6DDCA;
+    --orange-200: #FEA589;
+    --orange-400: #FE784E;
+    --off-white:  #FFFDF8;
+    --cream-300:  #FAF5F0;
+    --border:     #E2E6F0;
+    --white:      #FFFFFF;
+  }
+
+  body {
+    font-family: 'Figtree', Verdana, sans-serif;
+    background: var(--off-white);
+    color: var(--dark-900);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* HEADER — flat navy, matching the site's structural anchor color.
+     No gradient: nothing in the verified design system uses one. */
+  .header {
+    background: var(--blue-900);
+    padding: 26px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header-logo {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .header-logo img { width: 100%; height: 100%; display: block; }
+  .header-wordmark {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+  .header-sep {
+    width: 1px;
+    height: 18px;
+    background: rgba(255,255,255,0.2);
+    margin: 0 4px;
+  }
+  .header-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+  }
+  .header-badge {
+    background: var(--green-300);
+    color: var(--dark-900);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+
+  /* HERO */
+  .hero {
+    background: var(--lav-100);
+    border-bottom: 1px solid #CFC9FF;
+    padding: 28px 40px 24px;
+  }
+  .hero h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark-900);
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .hero-highlight {
+    display: inline-block;
+    background: var(--blue-100);
+    color: var(--blue-800);
+    padding: 0 10px;
+    border-radius: 22px;
+    transform: skewX(-10deg);
+    margin: 0 2px;
+  }
+  .hero-highlight span { display: inline-block; transform: skewX(10deg); }
+  .hero p {
+    font-size: 13.5px;
+    color: var(--dark-500);
+    max-width: 720px;
+    line-height: 1.7;
+    margin-top: 4px;
+  }
+  .hero p strong { color: var(--dark-900); }
+
+  /* RECAP STRIP */
+  .recap {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 18px 40px;
+    display: flex;
+    gap: 24px;
+    flex-wrap: wrap;
+  }
+  .recap-item {
+    flex: 1;
+    min-width: 260px;
+    font-size: 12.5px;
+    color: var(--dark-500);
+    line-height: 1.65;
+  }
+  .recap-item strong {
+    display: block;
+    color: var(--dark-900);
+    font-weight: 700;
+    font-size: 13px;
+    margin-bottom: 3px;
+  }
+
+  /* LEGEND */
+  .legend {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    align-items: center;
+  }
+  .legend-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--dark-300);
+    margin-right: 4px;
+  }
+  .uc-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 0;
+    white-space: nowrap;
+    border: none;
+    transform: skewX(-12deg);
+  }
+  .uc-tag span {
+    display: inline-block;
+    transform: skewX(12deg);
+  }
+  .uc-pm       { background: var(--blue-100);   color: var(--blue-800); }
+  .uc-cs       { background: var(--green-200);  color: #1A6B2E;         }
+  .uc-marketer { background: var(--lav-100);    color: var(--lav-700);  }
+  .uc-buyer    { background: var(--lav-700);    color: var(--white);    }
+
+  /* GRID */
+  .section-label {
+    max-width: 1200px;
+    margin: 28px auto 0;
+    padding: 0 40px;
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--dark-300);
+  }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 18px;
+    padding: 12px 40px 8px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  .grid-single {
+    padding: 12px 40px 44px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .card.full { grid-column: 1 / -1; }
+
+  .card-header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .card-title-group { flex: 1; }
+  .card-surface {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dark-300);
+    margin-bottom: 3px;
+  }
+  .card-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark-900);
+    letter-spacing: -0.01em;
+  }
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .card-body { padding: 18px 24px; }
+
+  .card-what {
+    font-size: 13px;
+    color: var(--dark-500);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .card-section-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--dark-300);
+    margin-bottom: 8px;
+    margin-top: 16px;
+  }
+  .card-section-label:first-child { margin-top: 0; }
+
+  .use-cases {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .good-for { font-size: 12.5px; color: var(--dark-500); line-height: 1.65; }
+  .good-for li {
+    list-style: none;
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 5px;
+  }
+  .good-for li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--blue-400);
+    font-size: 11px;
+    top: 2px;
+  }
+
+  .not-for, .expansion-note {
+    font-size: 12px;
+    color: var(--dark-500);
+    padding: 10px 14px 10px 16px;
+    border-radius: 12px;
+    border: 1px solid;
+    border-left-width: 4px;
+    line-height: 1.6;
+  }
+  .not-for strong, .expansion-note strong { color: var(--dark-900); }
+
+  /* Friction boxes — tinted per persona accent, not a flat neutral */
+  .not-for.tint-pm       { background: var(--blue-100);  border-color: #B9D7FF; border-left-color: var(--blue-500); }
+  .not-for.tint-cs       { background: #FEF3E2;           border-color: #F6DDA9; border-left-color: var(--orange-400); }
+  .not-for.tint-marketer { background: var(--lav-100);    border-color: #CFC9FF; border-left-color: var(--lav-600); }
+  /* Expansion-signal boxes — same family, brighter/greener to read as "growth" */
+  .expansion-note.tint-pm       { background: var(--blue-100);  border-color: #B9D7FF; border-left-color: var(--green-300); }
+  .expansion-note.tint-cs       { background: var(--green-200); border-color: #C9EFB0; border-left-color: var(--green-300); }
+  .expansion-note.tint-marketer { background: var(--lav-100);   border-color: #CFC9FF; border-left-color: var(--green-300); }
+
+  /* BUYER CARD — visually distinct from the practitioner cards, but built
+     the same way the site builds any distinct card: a pale surface tint
+     with a tonal border (see callout-card in the design doc), not a
+     saturated full-bleed fill. Plum stays where the system actually uses
+     saturated color: the small icon chip and the left-border accents. */
+  .buyer-card {
+    background: var(--lav-50);
+    border: 1px solid #E1DEFF;
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .buyer-card .card-header {
+    border-bottom: 1px solid #E1DEFF;
+  }
+  .buyer-card .care-split {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 14px;
+  }
+  .buyer-card .care-block {
+    padding: 12px 14px 12px 16px;
+    border-radius: 14px;
+    border: 1px solid;
+    border-left-width: 4px;
+    font-size: 12.5px;
+    line-height: 1.65;
+    color: var(--dark-500);
+  }
+  .buyer-card .care-yes {
+    background: var(--green-200);
+    border-color: #C9EFB0;
+    border-left-color: var(--green-300);
+  }
+  .buyer-card .care-no {
+    background: var(--orange-100);
+    border-color: #EFC7A2;
+    border-left-color: var(--orange-400);
+  }
+  .buyer-card .care-block strong { display: block; color: var(--dark-900); font-weight: 700; margin-bottom: 4px; font-size: 12.5px; }
+  .buyer-card .not-for.tint-buyer {
+    background: var(--white);
+    border-color: #E1DEFF;
+    border-left-color: var(--lav-600);
+  }
+
+  /* MATRIX TABLE */
+  .matrix-intro {
+    font-size: 13px;
+    color: var(--dark-500);
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    background: var(--white);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  thead th {
+    color: rgba(255,255,255,0.75);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 11px 14px;
+    text-align: left;
+  }
+  /* Each column carries its persona's color — matches the legend tags,
+     not a flat navy strip across the whole row. */
+  thead th:nth-child(1) { background: var(--dark-900); color: var(--white); }
+  thead th:nth-child(2) { background: var(--blue-800); }
+  thead th:nth-child(3) { background: #1A6B2E; }
+  thead th:nth-child(4) { background: var(--lav-700); }
+  tbody td {
+    padding: 12px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    color: var(--dark-500);
+    line-height: 1.55;
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) td { background: var(--off-white); }
+  .funnel-name { font-weight: 600; color: var(--dark-900); white-space: nowrap; }
+
+  /* THREAD STRIP */
+  .thread {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 40px 48px;
+  }
+  .thread-card {
+    background: var(--cream-300);
+    border: 1px solid #E9E1D8;
+    border-radius: 24px;
+    padding: 28px 32px;
+  }
+  .thread-card p {
+    font-size: 13px;
+    color: var(--dark-500);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+  .thread-steps {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 14px;
+    margin-top: 10px;
+  }
+  .thread-step {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 14px;
+    padding: 14px 16px;
+    font-size: 12.5px;
+    color: var(--dark-500);
+    line-height: 1.6;
+  }
+  .thread-step strong {
+    display: block;
+    color: var(--dark-900);
+    font-weight: 700;
+    font-size: 12px;
+    margin-bottom: 4px;
+  }
+
+  @media (max-width: 900px) {
+    .grid { grid-template-columns: 1fr; }
+    .thread-steps { grid-template-columns: 1fr; }
+    .buyer-card .care-split { grid-template-columns: 1fr; }
+  }
+  @media (max-width: 760px) {
+    .header, .hero, .recap, .legend, .grid, .grid-single, .section-label, .thread { padding-left: 20px; padding-right: 20px; }
+    .card.full { grid-column: 1; }
+    .hero h1 { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <div class="header-logo">
+      <img src="data:image/png;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAA4ADgDACIAAREBAhEB/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMAAAERAhEAPwDvdZ1i4vruQCRlgU4VAeMVWjsdSljDx21yyMMhgjYNQpEZ75Yh1eQL+ZxXo1lew3RnjiUr9nkMTA47entXu1akcLCKjG/9L/M8qEHXk3KVjz2a0v7ePzJoLiNOm5lIFW9H1m4sbuMGRmgYgMhPGK6m7uodXsXt4w4jkuFgL8fMAckr+APNcXd26WuqS28bFkjlKgnrwaqlVhiIuM428vu1/EmpCVFqUXf+v+Aem0UUV4B64UUUUAeZWlwlpqkVw6lljk3EDr1rqmgstVIvU02+IlHJjdFD9uRvrA1jRrixu5CI2aBiSrgcYqnFdX8Eflwz3MaddqOwH5Cvfq03XhGdKWp5MJqlJxqLQ7uGNjLb4tGtLW1DMA5Xk4I4Ck9iea4F5TPetKeryFvzOakkvNRlQpJc3ToeCrSMQat6No9xfXcZMbLApyzkcYpYeg6HNOo1/XcK1VVbRgj0KiiivBPWCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//Z" alt="Userflow">
+    </div>
+    <span class="header-wordmark">Userflow</span>
+    <div class="header-sep"></div>
+    <span class="header-title">Interview prep</span>
+  </div>
+  <div class="header-badge">Cheat sheet</div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>Customer segments &amp; <span class="hero-highlight"><span>personas</span></span></h1>
+  <p>Who the practitioner is, what they're measured on, where they get stuck — and how that shapes lifecycle messaging at each funnel state. Every deal has <strong>two people</strong>: the practitioner using the product, and the economic buyer signing the contract based on the practitioner's word.</p>
+</div>
+
+<!-- RECAP -->
+<div class="recap">
+  <div class="recap-item">
+    <strong>The Practitioner</strong>
+    Primary user, internal champion, the person lifecycle is actually moving. Three distinct personas below.
+  </div>
+  <div class="recap-item">
+    <strong>The Economic Buyer</strong>
+    VP / founder / Head of Product who signs based on the practitioner's recommendation. You almost never market to them directly.
+  </div>
+  <div class="recap-item">
+    <strong>The job of lifecycle</strong>
+    Make the practitioner successful enough, and confident enough, to sell upward.
+  </div>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <span class="legend-label">Personas</span>
+  <span class="uc-tag uc-pm"><span>Growth PM</span></span>
+  <span class="uc-tag uc-cs"><span>CS Lead</span></span>
+  <span class="uc-tag uc-marketer"><span>Growth Marketer</span></span>
+  <span class="uc-tag uc-buyer"><span>Economic Buyer</span></span>
+</div>
+
+<!-- PRACTITIONER PERSONA CARDS -->
+<div class="section-label">Practitioner personas</div>
+<div class="grid">
+
+  <!-- GROWTH PM -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-surface">Persona 01</div>
+        <div class="card-name">The Growth PM</div>
+      </div>
+      <div class="card-icon" style="background:var(--blue-100);">📈</div>
+    </div>
+    <div class="card-body">
+      <p class="card-what">A PM (or growth PM, sometimes a founding PM at a smaller company) who owns activation and adoption metrics. Measured on funnel conversion and feature adoption. Came to Userflow because onboarding was a problem they couldn't get eng cycles to fix.</p>
+
+      <div class="card-section-label">What they care about</div>
+      <ul class="good-for">
+        <li>Moving their metrics — not learning a tool for its own sake</li>
+        <li>Publishing a flow that demonstrably improves activation rate</li>
+        <li>Doing it without touching a dev queue</li>
+      </ul>
+
+      <div class="card-section-label">Lifecycle implication</div>
+      <ul class="good-for">
+        <li>Activation sequences: prescriptive, not educational</li>
+        <li>Skip the tour — give them a path to one published flow on a specific, high-value use case (typically new-user onboarding)</li>
+        <li>Earlier they see a result, the better their internal pitch</li>
+      </ul>
+
+      <div class="not-for tint-pm"><strong>Primary friction:</strong> starting is harder than expected. Userflow requires real product knowledge — your product, your segments, your desired outcomes — before you build. PMs who arrive thinking "I'll figure it out" stall at the blank canvas.</div>
+
+      <div class="expansion-note tint-pm" style="margin-top:12px;"><strong>Expansion signal:</strong> asking about segmentation, conditional logic, or analytics integration. They've shipped something and want to go deeper — trigger for depth-of-platform messaging.</div>
+    </div>
+  </div>
+
+  <!-- CS LEAD -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-surface">Persona 02</div>
+        <div class="card-name">The CS Lead / CSM</div>
+      </div>
+      <div class="card-icon" style="background:var(--green-200);">🤝</div>
+    </div>
+    <div class="card-body">
+      <p class="card-what">A CS leader (or IC) who owns customer health, onboarding completion, and time-to-value. Often comes from an environment where onboarding is done live by CS reps and is now trying to scale that in-product. Frequently at companies with 100–500 customers where CSM capacity is the bottleneck.</p>
+
+      <div class="card-section-label">What they care about</div>
+      <ul class="good-for">
+        <li>Cutting the time their team spends walking customers through setup</li>
+        <li>In-product guidance replacing a Zoom call or help-center ticket</li>
+        <li>Secondary: proving in-app onboarding works, to protect headcount</li>
+      </ul>
+
+      <div class="card-section-label">Lifecycle implication</div>
+      <ul class="good-for">
+        <li>Needs templates more than a blank canvas — a starting point close to their use case</li>
+        <li>Lead with a common CS scenario: feature adoption checklist, post-trial milestone, upsell trigger</li>
+        <li>Peer CS testimonials are disproportionately persuasive</li>
+      </ul>
+
+      <div class="not-for tint-cs"><strong>Primary friction:</strong> understands the problem deeply but may be less technical. Accurately reflecting product onboarding logic takes more configuration effort than expected, and they often don't control instrumentation — they need eng or a technical PM for events.</div>
+
+      <div class="expansion-note tint-cs" style="margin-top:12px;"><strong>Expansion signal:</strong> checklists and resource centers — replicating the "here's what's next" experience of a live CS handoff. Once they build those, Userflow is embedded in the CS motion, which dramatically increases stickiness.</div>
+    </div>
+  </div>
+
+  <!-- GROWTH MARKETER -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-surface">Persona 03</div>
+        <div class="card-name">The Growth / Lifecycle Marketer</div>
+      </div>
+      <div class="card-icon" style="background:var(--lav-100);">📧</div>
+    </div>
+    <div class="card-body">
+      <p class="card-what">A marketer (growth, lifecycle, demand gen) asked to improve free-to-paid conversion or reduce early churn. Often at a PLG company where marketing owns the post-signup funnel. Comfortable with email and automation, newer to in-product tooling.</p>
+
+      <div class="card-section-label">What they care about</div>
+      <ul class="good-for">
+        <li>Completing a funnel email can't reach</li>
+        <li>Users who open emails and still don't convert — in-product is the missing layer</li>
+      </ul>
+
+      <div class="card-section-label">Lifecycle implication</div>
+      <ul class="good-for">
+        <li>This is the persona closest to the role you'd be doing at Userflow</li>
+        <li>Responds to funnel-framing ("in-product messaging increased free-to-paid conversion by X%") and ROI evidence</li>
+        <li>Email + in-product as a paired strategy is a compelling frame</li>
+        <li>Activation threshold: publishing something tied to a metric they already own</li>
+      </ul>
+
+      <div class="not-for tint-marketer"><strong>Primary friction:</strong> two things — (1) often lacks deep product knowledge, so building flows that reflect real user journeys takes more research than planned; (2) may not have instrumentation access, limiting behavioral targeting. Can build a tour, can't trigger it off the right event without eng.</div>
+
+      <div class="expansion-note tint-marketer" style="margin-top:12px;"><strong>Expansion signal:</strong> behavioral triggers, A/B testing, and analytics integration. When they start asking about these, they're treating Userflow as a serious lifecycle channel, not a standalone tool.</div>
+    </div>
+  </div>
+
+</div>
+
+<!-- BUYER PERSONA -->
+<div class="section-label">The buyer persona (for completeness)</div>
+<div class="grid-single">
+  <div class="buyer-card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-surface">Economic buyer</div>
+        <div class="card-name">VP of Product / Head of Growth / CTO / Founder</div>
+      </div>
+      <div class="card-icon" style="background:var(--lav-700);">💼</div>
+    </div>
+    <div class="card-body">
+      <p class="card-what">The contract signer. Trusts the practitioner's judgment because they can't evaluate the product themselves. The business case is almost always: "we can improve onboarding without hiring another engineer."</p>
+
+      <div class="card-section-label">What they care about — and don't</div>
+      <div class="care-split">
+        <div class="care-block care-yes">
+          <strong>Cares about</strong>
+          Solving the team's activation problem without adding headcount — and the same key metrics the practitioner cares about (activation rate, time-to-value, CS efficiency, funnel conversion). They track the outcome, just not through the tool.
+        </div>
+        <div class="care-block care-no">
+          <strong>Doesn't care about</strong>
+          Feature lists or how the product works. They want evidence it works and assurance the team will actually use it — not a walkthrough of capabilities.
+        </div>
+      </div>
+
+      <div class="not-for tint-buyer" style="margin-top:14px;"><strong>Lifecycle implication:</strong> you rarely market to this person directly. You arm the practitioner to sell to them — evidence-based copy ("customers who publish 3+ flows see X% activation improvement"), ROI framing, and time-to-value data, all built around the metrics the buyer already tracks. Case studies and outcome data serve the practitioner's selling motion, not a direct buyer journey.</div>
+    </div>
+  </div>
+</div>
+
+<!-- LIFECYCLE MOTIONS MATRIX -->
+<div class="section-label">Lifecycle motions by funnel state × persona</div>
+<div class="grid-single">
+  <div class="card">
+    <div class="card-body">
+      <p class="matrix-intro">Same underlying lifecycle logic for every persona — first value, connect it to a metric they already own, arm them to justify investment upward. What differs is which first value, which metric, and which evidence format lands.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Funnel state</th>
+            <th>Growth PM</th>
+            <th>CS Lead</th>
+            <th>Growth Marketer</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="funnel-name">Trial / Not activated</td>
+            <td>Drive to first published flow on an onboarding use case</td>
+            <td>Drive to first checklist or tour on a CS handoff use case</td>
+            <td>Drive to first in-app sequence tied to a conversion goal</td>
+          </tr>
+          <tr>
+            <td class="funnel-name">Activated / Not paid (PQL)</td>
+            <td>Lead with activation rate evidence + segmentation tease</td>
+            <td>Lead with CS efficiency evidence + peer testimonials</td>
+            <td>Lead with funnel-completion framing + ROI data</td>
+          </tr>
+          <tr>
+            <td class="funnel-name">Paying / Surface-level</td>
+            <td>Push toward analytics integration and A/B testing</td>
+            <td>Push toward checklists + resource centers</td>
+            <td>Push toward behavioral triggers + experiment results</td>
+          </tr>
+          <tr>
+            <td class="funnel-name">Paying / Deep user</td>
+            <td>Seat expansion (team) + plan upgrade (advanced analytics)</td>
+            <td>Seat expansion (growing CS team) + integrations</td>
+            <td>Seat expansion (growing marketing team) + API/integration</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- THREAD -->
+<div class="thread">
+  <div class="thread-card">
+    <p><strong style="color:var(--dark-900);">The thread across all personas:</strong> every practitioner has a problem they can see clearly — activation drop-off, CS capacity limits, an email-to-product gap. They chose Userflow as the answer, and now need to see it work before they become advocates.</p>
+    <div class="thread-steps">
+      <div class="thread-step"><strong>1. First value, fast</strong>Persona-specific definition of "first value" — a published flow, a checklist, a triggered sequence.</div>
+      <div class="thread-step"><strong>2. Connect to an owned metric</strong>Tie that first value to a metric they already report on, not a new one they have to justify.</div>
+      <div class="thread-step"><strong>3. Arm them to sell upward</strong>Give them the language and evidence to justify continued investment to the buyer.</div>
+    </div>
+  </div>
+</div>
+
+</body>
+</html>
