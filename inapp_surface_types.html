@@ -1,0 +1,713 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>In-app surface types — Userflow cheat sheet</title>
+<link rel="icon" type="image/png" href="data:image/png;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAA4ADgDACIAAREBAhEB/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMAAAERAhEAPwDvdZ1i4vruQCRlgU4VAeMVWjsdSljDx21yyMMhgjYNQpEZ75Yh1eQL+ZxXo1lew3RnjiUr9nkMTA47entXu1akcLCKjG/9L/M8qEHXk3KVjz2a0v7ePzJoLiNOm5lIFW9H1m4sbuMGRmgYgMhPGK6m7uodXsXt4w4jkuFgL8fMAckr+APNcXd26WuqS28bFkjlKgnrwaqlVhiIuM428vu1/EmpCVFqUXf+v+Aem0UUV4B64UUUUAeZWlwlpqkVw6lljk3EDr1rqmgstVIvU02+IlHJjdFD9uRvrA1jRrixu5CI2aBiSrgcYqnFdX8Eflwz3MaddqOwH5Cvfq03XhGdKWp5MJqlJxqLQ7uGNjLb4tGtLW1DMA5Xk4I4Ck9iea4F5TPetKeryFvzOakkvNRlQpJc3ToeCrSMQat6No9xfXcZMbLApyzkcYpYeg6HNOo1/XcK1VVbRgj0KiiivBPWCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//Z">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    /* Userflow brand palette */
+    --dark-900:   #121941;
+    --dark-500:   #52577A;
+    --dark-300:   #8B90B0;
+    --blue-100:   #D1E5FF;
+    --blue-400:   #4A90EB;
+    --blue-500:   #236FD4;
+    --blue-800:   #105ED5;
+    --blue-900:   #0F334D;
+    --lav-50:     #F3F2FF;
+    --lav-100:    #E1DEFF;
+    --lav-300:    #BFBAFF;
+    --lav-600:    #8A38F5;
+    --lav-700:    #4E2656;
+    --green-100:  #D5FEC0;
+    --green-200:  #ECFDE2;
+    --green-300:  #23D777;
+    --green-600:  #B4EA99;
+    --orange-100: #F6DDCA;
+    --orange-200: #FEA589;
+    --orange-400: #FE784E;
+    --off-white:  #FFFDF8;
+    --cream-300:  #FAF5F0;
+    --border:     #E2E6F0;
+    --white:      #FFFFFF;
+  }
+
+  body {
+    font-family: 'Figtree', Verdana, sans-serif;
+    background: var(--off-white);
+    color: var(--dark-900);
+    min-height: 100vh;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+
+  /* HEADER — deep blue like Userflow solution pages */
+  .header {
+    background: var(--blue-900);
+    padding: 26px 40px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  .header-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  .header-logo {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
+    overflow: hidden;
+    flex-shrink: 0;
+  }
+  .header-logo img { width: 100%; height: 100%; display: block; }
+  .header-wordmark {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--white);
+    letter-spacing: -0.01em;
+  }
+  .header-sep {
+    width: 1px;
+    height: 18px;
+    background: rgba(255,255,255,0.2);
+    margin: 0 4px;
+  }
+  .header-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: rgba(255,255,255,0.6);
+  }
+  .header-badge {
+    background: var(--green-300);
+    color: var(--dark-900);
+    font-size: 11px;
+    font-weight: 700;
+    padding: 4px 12px;
+    border-radius: 9999px;
+    white-space: nowrap;
+  }
+
+  /* HERO BAND — Userflow uses blue-100 on hero/solution pages */
+  .hero {
+    background: var(--blue-100);
+    border-bottom: 1px solid #B9D7FF;
+    padding: 28px 40px 24px;
+  }
+  .hero h1 {
+    font-size: 22px;
+    font-weight: 700;
+    color: var(--dark-900);
+    letter-spacing: -0.02em;
+    margin-bottom: 6px;
+  }
+  .hero-highlight {
+    display: inline-block;
+    background: var(--lav-100);
+    color: var(--lav-700);
+    padding: 0 10px;
+    border-radius: 22px;
+    transform: skewX(-10deg);
+    margin: 0 2px;
+  }
+  .hero-highlight span { display: inline-block; transform: skewX(10deg); }
+  .hero p {
+    font-size: 13.5px;
+    color: var(--dark-500);
+    max-width: 680px;
+    line-height: 1.7;
+    margin-top: 4px;
+  }
+  .hero p strong { color: var(--dark-900); }
+
+  /* LEGEND */
+  .legend {
+    background: var(--white);
+    border-bottom: 1px solid var(--border);
+    padding: 14px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 7px;
+    align-items: center;
+  }
+  .legend-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--dark-300);
+    margin-right: 4px;
+  }
+  /* Parallelogram pill — no border-radius, skewX creates the slanted shape */
+  .uc-tag {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 12px;
+    border-radius: 0;
+    white-space: nowrap;
+    border: none;
+    transform: skewX(-12deg);
+  }
+  .uc-tag span {
+    display: inline-block;
+    transform: skewX(12deg);
+  }
+  /* Using Userflow's actual palette — no borders on skew pills per brand spec */
+  .uc-onboard  { background: var(--blue-100);   color: var(--blue-800); }
+  .uc-feature  { background: var(--lav-100);    color: var(--lav-700);  }
+  .uc-convert  { background: var(--orange-100); color: #7A3010;         }
+  .uc-retain   { background: var(--green-200);  color: #1A6B2E;         }
+  .uc-support  { background: #FEF3E2;           color: #7A4E0A;         }
+  .uc-feedback { background: #FDE8F0;           color: #7A1A40;         }
+  .uc-expand   { background: var(--green-100);  color: #1A5E20;         }
+
+  /* GRID */
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
+    padding: 24px 40px 44px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* Userflow bento-style cards: 24px radius, tonal border, no shadow */
+  .card {
+    background: var(--white);
+    border: 1px solid var(--border);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+  .card.full { grid-column: 1 / -1; }
+
+  .card-header {
+    padding: 20px 24px 16px;
+    border-bottom: 1px solid var(--border);
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 12px;
+  }
+  .card-title-group { flex: 1; }
+  .card-surface {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--dark-300);
+    margin-bottom: 3px;
+  }
+  .card-name {
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--dark-900);
+    letter-spacing: -0.01em;
+  }
+  .card-icon {
+    width: 40px;
+    height: 40px;
+    border-radius: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    flex-shrink: 0;
+  }
+
+  .card-body { padding: 18px 24px; }
+
+  .card-what {
+    font-size: 13px;
+    color: var(--dark-500);
+    line-height: 1.7;
+    margin-bottom: 14px;
+  }
+
+  .card-section-label {
+    font-size: 10.5px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.09em;
+    color: var(--dark-300);
+    margin-bottom: 8px;
+    margin-top: 16px;
+  }
+
+  .use-cases {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+  }
+
+  .good-for { font-size: 12.5px; color: var(--dark-500); line-height: 1.65; }
+  .good-for li {
+    list-style: none;
+    padding-left: 18px;
+    position: relative;
+    margin-bottom: 5px;
+  }
+  .good-for li::before {
+    content: "→";
+    position: absolute;
+    left: 0;
+    color: var(--blue-400);
+    font-size: 11px;
+    top: 2px;
+  }
+
+  /* "Not ideal" note: cream background, matching Userflow FAQ blocks */
+  .not-for {
+    font-size: 12px;
+    color: var(--dark-500);
+    padding: 10px 14px;
+    background: var(--cream-300);
+    border-radius: 12px;
+    border: 1px solid #E9E1D8;
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+  .not-for strong { color: var(--dark-900); }
+
+  .example-chip {
+    display: inline-block;
+    font-family: 'Courier New', monospace;
+    font-size: 11px;
+    background: var(--lav-50);
+    border: 1px solid var(--lav-300);
+    color: var(--lav-700);
+    padding: 3px 9px;
+    border-radius: 6px;
+    margin-top: 5px;
+    margin-right: 5px;
+  }
+
+  /* MATRIX TABLE */
+  .matrix-intro {
+    font-size: 13px;
+    color: var(--dark-500);
+    line-height: 1.7;
+    margin-bottom: 18px;
+  }
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 12.5px;
+    background: var(--white);
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border);
+  }
+  thead th {
+    background: var(--dark-900);
+    color: rgba(255,255,255,0.6);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    padding: 11px 14px;
+    text-align: left;
+  }
+  thead th:first-child { color: var(--white); }
+  tbody td {
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--border);
+    vertical-align: middle;
+    color: var(--dark-500);
+  }
+  tbody tr:last-child td { border-bottom: none; }
+  tbody tr:nth-child(even) td { background: var(--off-white); }
+  .surface-name { font-weight: 600; color: var(--dark-900); white-space: nowrap; }
+
+  .dot { display: inline-block; width: 9px; height: 9px; border-radius: 50%; }
+  .dot-yes   { background: var(--green-300); }
+  .dot-maybe { background: var(--orange-400); }
+  .dot-no    { background: var(--border); }
+  .dot-wrap  { display: flex; align-items: center; gap: 6px; font-size: 12px; }
+
+  /* PAIRINGS */
+  .pairings-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 10px;
+    margin-top: 16px;
+  }
+  .pairing-card {
+    padding: 12px 14px;
+    background: var(--blue-100);
+    border: 1px solid #B9D7FF;
+    border-radius: 14px;
+    font-size: 12.5px;
+    color: var(--dark-500);
+    line-height: 1.6;
+  }
+  .pairing-card strong {
+    display: block;
+    color: var(--dark-900);
+    font-weight: 600;
+    margin-bottom: 3px;
+  }
+
+  @media (max-width: 760px) {
+    .header, .hero, .legend, .grid { padding-left: 20px; padding-right: 20px; }
+    .grid { grid-template-columns: 1fr; }
+    .card.full { grid-column: 1; }
+    .hero h1 { font-size: 18px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<header class="header">
+  <div class="header-left">
+    <div class="header-logo">
+      <img src="data:image/png;base64,/9j/4AAQSkZJRgABAgAAAQABAAD/wAARCAA4ADgDACIAAREBAhEB/9sAQwAIBgYHBgUIBwcHCQkICgwUDQwLCwwZEhMPFB0aHx4dGhwcICQuJyAiLCMcHCg3KSwwMTQ0NB8nOT04MjwuMzQy/9sAQwEJCQkMCwwYDQ0YMiEcITIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIyMjIy/8QAHwAAAQUBAQEBAQEAAAAAAAAAAAECAwQFBgcICQoL/8QAtRAAAgEDAwIEAwUFBAQAAAF9AQIDAAQRBRIhMUEGE1FhByJxFDKBkaEII0KxwRVS0fAkM2JyggkKFhcYGRolJicoKSo0NTY3ODk6Q0RFRkdISUpTVFVWV1hZWmNkZWZnaGlqc3R1dnd4eXqDhIWGh4iJipKTlJWWl5iZmqKjpKWmp6ipqrKztLW2t7i5usLDxMXGx8jJytLT1NXW19jZ2uHi4+Tl5ufo6erx8vP09fb3+Pn6/8QAHwEAAwEBAQEBAQEBAQAAAAAAAAECAwQFBgcICQoL/8QAtREAAgECBAQDBAcFBAQAAQJ3AAECAxEEBSExBhJBUQdhcRMiMoEIFEKRobHBCSMzUvAVYnLRChYkNOEl8RcYGRomJygpKjU2Nzg5OkNERUZHSElKU1RVVldYWVpjZGVmZ2hpanN0dXZ3eHl6goOEhYaHiImKkpOUlZaXmJmaoqOkpaanqKmqsrO0tba3uLm6wsPExcbHyMnK0tPU1dbX2Nna4uPk5ebn6Onq8vP09fb3+Pn6/9oADAMAAAERAhEAPwDvdZ1i4vruQCRlgU4VAeMVWjsdSljDx21yyMMhgjYNQpEZ75Yh1eQL+ZxXo1lew3RnjiUr9nkMTA47entXu1akcLCKjG/9L/M8qEHXk3KVjz2a0v7ePzJoLiNOm5lIFW9H1m4sbuMGRmgYgMhPGK6m7uodXsXt4w4jkuFgL8fMAckr+APNcXd26WuqS28bFkjlKgnrwaqlVhiIuM428vu1/EmpCVFqUXf+v+Aem0UUV4B64UUUUAeZWlwlpqkVw6lljk3EDr1rqmgstVIvU02+IlHJjdFD9uRvrA1jRrixu5CI2aBiSrgcYqnFdX8Eflwz3MaddqOwH5Cvfq03XhGdKWp5MJqlJxqLQ7uGNjLb4tGtLW1DMA5Xk4I4Ck9iea4F5TPetKeryFvzOakkvNRlQpJc3ToeCrSMQat6No9xfXcZMbLApyzkcYpYeg6HNOo1/XcK1VVbRgj0KiiivBPWCiiigAooooAKKKKACiiigAooooAKKKKACiiigAooooAKKKKAP//Z" alt="Userflow">
+    </div>
+    <span class="header-wordmark">Userflow</span>
+    <div class="header-sep"></div>
+    <span class="header-title">Interview prep</span>
+  </div>
+  <div class="header-badge">Cheat sheet</div>
+</header>
+
+<!-- HERO -->
+<div class="hero">
+  <h1>In-app <span class="hero-highlight"><span>surface types</span></span></h1>
+  <p>What each one does, when to reach for it, and why — plus how they work together. Most lifecycle moments call for <strong>more than one surface</strong>; the choice signals to the user how much attention the moment requires.</p>
+</div>
+
+<!-- LEGEND -->
+<div class="legend">
+  <span class="legend-label">Use cases</span>
+  <span class="uc-tag uc-onboard"><span>Onboarding</span></span>
+  <span class="uc-tag uc-feature"><span>Feature adoption</span></span>
+  <span class="uc-tag uc-convert"><span>Conversion</span></span>
+  <span class="uc-tag uc-retain"><span>Retention</span></span>
+  <span class="uc-tag uc-support"><span>Support deflection</span></span>
+  <span class="uc-tag uc-feedback"><span>Feedback</span></span>
+  <span class="uc-tag uc-expand"><span>Expansion</span></span>
+</div>
+
+<!-- CARDS -->
+<div class="grid">
+
+  <!-- TOURS & FLOWS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-surface">Surface 01</div>
+        <div class="card-name">Product tours &amp; flows</div>
+      </div>
+      <div class="card-icon" style="background:var(--blue-100);">🗺️</div>
+    </div>
+    <div class="card-body">
+      <p class="card-what">Step-by-step walkthroughs that guide users through a task inside the product. Each step highlights a UI element and prompts an action before advancing. The most interactive surface — the user is doing, not just reading.</p>
+      <div class="card-section-label">Use cases</div>
+      <div class="use-cases">
+        <span class="uc-tag uc-onboard"><span>Onboarding</span></span>
+        <span class="uc-tag uc-feature"><span>Feature adoption</span></span>
+        <span class="uc-tag uc-support"><span>Support deflection</span></span>
+      </div>
+      <div class="card-section-label">Good for</div>
+      <ul class="good-for">
+        <li>First-time workflows with multiple steps where someone could get lost</li>
+        <li>Replacing a support ticket — "show me how to do X" becomes a self-serve walkthrough</li>
+        <li>Introducing a new feature that isn't self-explanatory</li>
+        <li>Re-engaging dormant users on a workflow they've never completed</li>
+      </ul>
+      <div class="card-section-label">Example triggers</div>
+      <span class="example-chip">user.first_login = true</span>
+      <span class="example-chip">feature_X_visited AND flow_not_completed</span>
+      <span class="example-chip">support_topic = "how do I..."</span>
+      <div class="not-for"><strong>Not ideal when:</strong> the user already knows the workflow. A tour shown to an experienced user feels patronizing and trains them to dismiss.</div>
+    </div>
+  </div>
+
+  <!-- CHECKLISTS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-surface">Surface 02</div>
+        <div class="card-name">Checklists</div>
+      </div>
+      <div class="card-icon" style="background:var(--green-200);">✅</div>
+    </div>
+    <div class="card-body">
+      <p class="card-what">A persistent panel showing onboarding or activation progress as a list of tasks. Items check off as users complete them. Lower friction than a tour — the user moves at their own pace rather than being walked step by step.</p>
+      <div class="card-section-label">Use cases</div>
+      <div class="use-cases">
+        <span class="uc-tag uc-onboard"><span>Onboarding</span></span>
+        <span class="uc-tag uc-retain"><span>Retention</span></span>
+        <span class="uc-tag uc-feature"><span>Feature adoption</span></span>
+      </div>
+      <div class="card-section-label">Good for</div>
+      <ul class="good-for">
+        <li>Users who prefer to self-direct rather than be walked through steps</li>
+        <li>Multi-session onboarding where someone needs to pick back up</li>
+        <li>Showing users what "fully set up" looks like so they know when they're done</li>
+        <li>Feature adoption campaigns — "here are 3 things you haven't tried yet"</li>
+      </ul>
+      <div class="card-section-label">Example triggers</div>
+      <span class="example-chip">signup completed</span>
+      <span class="example-chip">onboarding_checklist_pct &lt; 100</span>
+      <span class="example-chip">days_since_last_login &gt; 7</span>
+      <div class="not-for"><strong>Not ideal when:</strong> the task list exceeds 5–6 items. More than that feels like homework. Also less effective for single-session, high-intent moments where a tour is the right call.</div>
+    </div>
+  </div>
+
+  <!-- TOOLTIPS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-surface">Surface 03</div>
+        <div class="card-name">Tooltips</div>
+      </div>
+      <div class="card-icon" style="background:#FEF3E2;">💬</div>
+    </div>
+    <div class="card-body">
+      <p class="card-what">Small contextual callouts attached to a specific UI element. Can be persistent (on hover) or triggered (on first visit or after a launch). Lowest interruption of any surface — the user stays in their workflow entirely.</p>
+      <div class="card-section-label">Use cases</div>
+      <div class="use-cases">
+        <span class="uc-tag uc-feature"><span>Feature adoption</span></span>
+        <span class="uc-tag uc-onboard"><span>Onboarding</span></span>
+        <span class="uc-tag uc-support"><span>Support deflection</span></span>
+      </div>
+      <div class="card-section-label">Good for</div>
+      <ul class="good-for">
+        <li>Clarifying what a button, field, or setting actually does</li>
+        <li>Pointing to a new feature without interrupting the current task</li>
+        <li>Just-in-time help at a decision point — right before a user clicks something risky</li>
+        <li>Reducing tickets on questions that could be answered in-context</li>
+      </ul>
+      <div class="card-section-label">Example triggers</div>
+      <span class="example-chip">element hover</span>
+      <span class="example-chip">new_feature_released AND user.plan = paid</span>
+      <span class="example-chip">first visit to settings page</span>
+      <div class="not-for"><strong>Not ideal when:</strong> the explanation needs more than two sentences. At that point a tour or resource center article fits better. Dense tooltips get skimmed past.</div>
+    </div>
+  </div>
+
+  <!-- ANNOUNCEMENTS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-surface">Surface 04</div>
+        <div class="card-name">Announcements &amp; banners</div>
+      </div>
+      <div class="card-icon" style="background:var(--lav-100);">📣</div>
+    </div>
+    <div class="card-body">
+      <p class="card-what">In-product messages that interrupt (modals) or persist (banners) to deliver a message broadly, targeted by segment. The in-app equivalent of a broadcast email — except the user is actively in the product when they see it.</p>
+      <div class="card-section-label">Use cases</div>
+      <div class="use-cases">
+        <span class="uc-tag uc-feature"><span>Feature adoption</span></span>
+        <span class="uc-tag uc-convert"><span>Conversion</span></span>
+        <span class="uc-tag uc-expand"><span>Expansion</span></span>
+        <span class="uc-tag uc-retain"><span>Retention</span></span>
+      </div>
+      <div class="card-section-label">Good for</div>
+      <ul class="good-for">
+        <li>New feature launches where you need broad awareness fast</li>
+        <li>Trial expiration warnings ("Your trial ends in 3 days")</li>
+        <li>Plan limit warnings ("You've used 90% of your flow quota")</li>
+        <li>Upsell moments when a user tries to access a paid feature</li>
+        <li>Time-sensitive announcements — downtime, policy changes, events</li>
+      </ul>
+      <div class="card-section-label">Example triggers</div>
+      <span class="example-chip">trial_days_remaining = 3</span>
+      <span class="example-chip">flow_count / plan_limit &gt; 0.9</span>
+      <span class="example-chip">feature_launch_date = today</span>
+      <div class="not-for"><strong>Not ideal when:</strong> the message isn't urgent or relevant to what the user is doing. Overused modals train users to dismiss without reading. Frequency and relevance are credibility.</div>
+    </div>
+  </div>
+
+  <!-- RESOURCE CENTER -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-surface">Surface 05</div>
+        <div class="card-name">Resource center</div>
+      </div>
+      <div class="card-icon" style="background:var(--green-100);">📚</div>
+    </div>
+    <div class="card-body">
+      <p class="card-what">A persistent panel (launched from a button in the product UI) giving users on-demand access to guided tours, knowledge base articles, checklists, and AI-assisted help. Users pull from it when they need it — nothing is pushed.</p>
+      <div class="card-section-label">Use cases</div>
+      <div class="use-cases">
+        <span class="uc-tag uc-support"><span>Support deflection</span></span>
+        <span class="uc-tag uc-onboard"><span>Onboarding</span></span>
+        <span class="uc-tag uc-feature"><span>Feature adoption</span></span>
+      </div>
+      <div class="card-section-label">Good for</div>
+      <ul class="good-for">
+        <li>Reducing inbound support tickets — users find answers themselves</li>
+        <li>Giving users agency to explore at their own pace post-onboarding</li>
+        <li>Surfacing relevant content based on where the user is in the product</li>
+        <li>Housing the checklist and all tours in one persistent place</li>
+        <li>The "I'm stuck" destination that replaces "file a ticket"</li>
+      </ul>
+      <div class="card-section-label">Example triggers</div>
+      <span class="example-chip">always available (persistent)</span>
+      <span class="example-chip">content filtered by current_page</span>
+      <span class="example-chip">FlowAI Actions routes here</span>
+      <div class="not-for"><strong>Not ideal when:</strong> used as a documentation dump. A resource center with 40 articles is as useless as none. Curate to 5–8 highly relevant items per context.</div>
+    </div>
+  </div>
+
+  <!-- NPS / SURVEYS -->
+  <div class="card">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-surface">Surface 06</div>
+        <div class="card-name">NPS &amp; surveys</div>
+      </div>
+      <div class="card-icon" style="background:#FDE8F0;">📊</div>
+    </div>
+    <div class="card-body">
+      <p class="card-what">In-product survey prompts — NPS score, CSAT, open-ended questions, feature satisfaction polls. Triggered at key lifecycle moments or after specific actions. Higher response rates than email surveys because users are already in context.</p>
+      <div class="card-section-label">Use cases</div>
+      <div class="use-cases">
+        <span class="uc-tag uc-feedback"><span>Feedback</span></span>
+        <span class="uc-tag uc-retain"><span>Retention</span></span>
+        <span class="uc-tag uc-convert"><span>Conversion</span></span>
+      </div>
+      <div class="card-section-label">Good for</div>
+      <ul class="good-for">
+        <li>NPS after a meaningful milestone (first flow published, 30 days paid)</li>
+        <li>Churn intent signals — a declining score is an early warning</li>
+        <li>Feature satisfaction after someone uses something new</li>
+        <li>Qualifying use case at signup to personalize the onboarding path</li>
+        <li>Win/loss signal when a trial user doesn't convert</li>
+      </ul>
+      <div class="card-section-label">Example triggers</div>
+      <span class="example-chip">first_flow_published</span>
+      <span class="example-chip">day_30_of_paid_plan</span>
+      <span class="example-chip">trial_end AND not_converted</span>
+      <div class="not-for"><strong>Not ideal when:</strong> triggered before the user has enough experience to have an opinion, or more than once per quarter. One well-timed survey beats three that get dismissed. Close the loop on responses or the signal is wasted.</div>
+    </div>
+  </div>
+
+  <!-- MATRIX -->
+  <div class="card full">
+    <div class="card-header">
+      <div class="card-title-group">
+        <div class="card-surface">Reference</div>
+        <div class="card-name">Surface × use case matrix</div>
+      </div>
+      <div class="card-icon" style="background:var(--off-white);">🔢</div>
+    </div>
+    <div class="card-body">
+      <p class="matrix-intro">Most real lifecycle moments call for more than one surface. This shows where each type fits — and the natural pairings at the bottom suggest how to combine them.</p>
+      <table>
+        <thead>
+          <tr>
+            <th>Surface</th>
+            <th>Onboarding</th>
+            <th>Feature adoption</th>
+            <th>Conversion</th>
+            <th>Retention</th>
+            <th>Support deflection</th>
+            <th>Feedback</th>
+            <th>Expansion</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="surface-name">Tours &amp; flows</td>
+            <td><span class="dot-wrap"><span class="dot dot-yes"></span> Primary</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-yes"></span> Primary</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-maybe"></span> Supporting</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-maybe"></span> Supporting</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-yes"></span> Primary</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+          </tr>
+          <tr>
+            <td class="surface-name">Checklists</td>
+            <td><span class="dot-wrap"><span class="dot dot-yes"></span> Primary</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-maybe"></span> Supporting</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-maybe"></span> Supporting</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-maybe"></span> Supporting</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+          </tr>
+          <tr>
+            <td class="surface-name">Tooltips</td>
+            <td><span class="dot-wrap"><span class="dot dot-maybe"></span> Supporting</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-yes"></span> Primary</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-yes"></span> Primary</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+          </tr>
+          <tr>
+            <td class="surface-name">Announcements &amp; banners</td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-yes"></span> Primary</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-yes"></span> Primary</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-yes"></span> Primary</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-yes"></span> Primary</span></td>
+          </tr>
+          <tr>
+            <td class="surface-name">Resource center</td>
+            <td><span class="dot-wrap"><span class="dot dot-maybe"></span> Supporting</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-maybe"></span> Supporting</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-yes"></span> Primary</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+          </tr>
+          <tr>
+            <td class="surface-name">NPS &amp; surveys</td>
+            <td><span class="dot-wrap"><span class="dot dot-maybe"></span> Supporting</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-maybe"></span> Supporting</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-yes"></span> Primary</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-yes"></span> Primary</span></td>
+            <td><span class="dot-wrap"><span class="dot dot-no"></span> —</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="card-section-label" style="margin-top:20px;">Natural pairings for common lifecycle moments</div>
+      <div class="pairings-grid">
+        <div class="pairing-card">
+          <strong>New user activation</strong>
+          Checklist (structure) + Tour (walkthrough) + Resource Center (self-serve fallback)
+        </div>
+        <div class="pairing-card">
+          <strong>Feature launch</strong>
+          Announcement (awareness) + Tooltip (in-context) + Tour (for those who want to go deeper)
+        </div>
+        <div class="pairing-card">
+          <strong>Trial-to-paid conversion</strong>
+          Banner (limit/urgency trigger) + Tour (show value of paid feature) + Survey (if they don't convert — find out why)
+        </div>
+        <div class="pairing-card">
+          <strong>Churn prevention</strong>
+          Banner (re-engagement prompt) + Tour (remind them of a workflow) + NPS (surface dissatisfaction early)
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+</body>
+</html>

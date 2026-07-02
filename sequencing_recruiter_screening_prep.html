@@ -1,0 +1,811 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sequencing.com — Recruiter Screen Prep</title>
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='4' fill='white' stroke='%23e5e7eb' stroke-width='1.5'/%3E%3Ctext x='16' y='22' font-family='Inter,system-ui,sans-serif' font-size='18' font-weight='700' text-anchor='middle' fill='%2312306C'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy: #12306C;
+    --navy-deep: #0D1F47;
+    --navy-8: rgba(18, 48, 108, 0.08);
+    --navy-12: rgba(18, 48, 108, 0.12);
+    --white: #ffffff;
+    --body: #111317;
+    --secondary: #374151;
+    --muted: #6b7280;
+    --border: #e5e7eb;
+    --hover-row: #f9fafb;
+    --label-size: 11px;
+    --font: 'Inter', system-ui, -apple-system, sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--font);
+    background: var(--white);
+    color: var(--body);
+    font-size: 15px;
+    line-height: 1.6;
+    padding-top: 64px;
+  }
+
+  /* ── STICKY HEADER ── */
+  .site-header {
+    position: fixed;
+    top: 0; left: 0; right: 0;
+    height: 64px;
+    background: var(--navy);
+    display: flex;
+    align-items: center;
+    padding: 0 24px;
+    gap: 12px;
+    z-index: 100;
+    box-shadow: 0 1px 0 rgba(255,255,255,0.08);
+  }
+  .header-mark {
+    width: 34px; height: 34px;
+    background: rgba(255,255,255,0.12);
+    border-radius: 8px;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 16px; font-weight: 700;
+    color: #fff;
+    flex-shrink: 0;
+    letter-spacing: -0.5px;
+  }
+  .header-info {
+    display: flex;
+    align-items: baseline;
+    gap: 8px;
+    flex: 1;
+    min-width: 0;
+  }
+  .header-company {
+    font-size: 15px;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+  }
+  .header-dot {
+    color: rgba(255,255,255,0.35);
+    font-size: 13px;
+  }
+  .header-role {
+    font-size: 13px;
+    color: rgba(255,255,255,0.7);
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  .header-type {
+    font-size: 12px;
+    color: rgba(255,255,255,0.5);
+    white-space: nowrap;
+  }
+  .header-divider {
+    color: rgba(255,255,255,0.2);
+    font-size: 13px;
+  }
+  .fit-badge {
+    margin-left: auto;
+    background: rgba(255,255,255,0.15);
+    border: 1px solid rgba(255,255,255,0.25);
+    border-radius: 20px;
+    padding: 4px 12px;
+    font-size: 12px;
+    font-weight: 700;
+    color: #fff;
+    white-space: nowrap;
+    letter-spacing: 0.03em;
+  }
+
+  /* ── PAGE LAYOUT ── */
+  .page {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 40px 24px 80px;
+  }
+
+  /* ── SECTION LABEL ── */
+  .section-label {
+    font-size: var(--label-size);
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--navy);
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--border);
+    margin-bottom: 20px;
+  }
+
+  /* ── ANGLE BOX ── */
+  .angle-box {
+    background: var(--navy-8);
+    border-left: 3px solid var(--navy);
+    border-radius: 0 6px 6px 0;
+    padding: 20px 24px;
+    margin-bottom: 40px;
+  }
+  .angle-box p {
+    font-size: 14px;
+    color: var(--secondary);
+    line-height: 1.75;
+    margin-top: 10px;
+  }
+  .angle-box p:first-child { margin-top: 0; }
+  .angle-box strong {
+    color: var(--body);
+    font-weight: 600;
+  }
+  .angle-headline {
+    font-size: 15px;
+    font-weight: 700;
+    color: var(--navy);
+    margin-bottom: 6px;
+  }
+
+  /* ── SECTIONS ── */
+  .section {
+    margin-bottom: 48px;
+  }
+
+  /* ── ACCORDION ── */
+  .accordion-item {
+    border-bottom: 1px solid var(--border);
+  }
+  .accordion-item:first-child {
+    border-top: 1px solid var(--border);
+  }
+  .accordion-trigger {
+    width: 100%;
+    background: none;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 18px 0;
+    gap: 16px;
+    text-align: left;
+  }
+  .accordion-trigger:hover .q-text,
+  .accordion-item.open .q-text {
+    color: var(--navy);
+  }
+  .q-text {
+    font-size: 15px;
+    font-weight: 600;
+    color: var(--body);
+    transition: color 0.15s;
+    line-height: 1.4;
+  }
+
+  /* CSS-drawn +/- toggle */
+  .toggle-icon {
+    position: relative;
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+  .toggle-icon::before,
+  .toggle-icon::after {
+    content: '';
+    position: absolute;
+    background: var(--muted);
+    transition: background 0.15s, transform 0.2s, opacity 0.2s;
+    border-radius: 1px;
+  }
+  /* horizontal bar */
+  .toggle-icon::before {
+    width: 12px; height: 2px;
+    top: 7px; left: 2px;
+  }
+  /* vertical bar */
+  .toggle-icon::after {
+    width: 2px; height: 12px;
+    top: 2px; left: 7px;
+  }
+  .accordion-trigger:hover .toggle-icon::before,
+  .accordion-trigger:hover .toggle-icon::after,
+  .accordion-item.open .toggle-icon::before,
+  .accordion-item.open .toggle-icon::after {
+    background: var(--navy);
+  }
+  /* collapse vertical bar when open */
+  .accordion-item.open .toggle-icon::after {
+    transform: scaleY(0);
+    opacity: 0;
+  }
+
+  .accordion-answer {
+    display: none;
+    padding-bottom: 22px;
+  }
+  .accordion-item.open .accordion-answer {
+    display: block;
+  }
+  .accordion-answer p {
+    font-size: 14px;
+    color: var(--secondary);
+    line-height: 1.75;
+  }
+  .accordion-answer p + p {
+    margin-top: 10px;
+  }
+  .accordion-answer blockquote {
+    border-left: 2px solid var(--navy);
+    padding-left: 16px;
+    margin: 12px 0;
+    font-size: 14px;
+    color: var(--secondary);
+    line-height: 1.75;
+    font-style: italic;
+  }
+
+  /* ── SALARY PILL ── */
+  .salary-pill {
+    display: inline-block;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    background: var(--navy-8);
+    border: 1.5px solid var(--navy);
+    border-radius: 20px;
+    padding: 3px 14px;
+    margin: 4px 2px;
+    line-height: 1.5;
+  }
+
+  /* ── METRIC PILLS ── */
+  .pill {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    color: var(--navy);
+    background: var(--navy-8);
+    border: 1px solid rgba(18,48,108,0.25);
+    border-radius: 12px;
+    padding: 2px 8px;
+    margin: 1px 2px;
+    white-space: nowrap;
+    vertical-align: middle;
+  }
+
+  /* ── QUICK LINKS BAR ── */
+  .quick-links {
+    background: var(--navy-8);
+    border: 1px solid rgba(18,48,108,0.2);
+    border-radius: 8px;
+    padding: 14px 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-top: 4px;
+    margin-bottom: 0;
+  }
+  .quick-links-label {
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--muted);
+    margin-right: 4px;
+  }
+  .quick-link {
+    display: inline-block;
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--navy);
+    background: var(--white);
+    border: 1.5px solid var(--navy);
+    border-radius: 20px;
+    padding: 4px 14px;
+    text-decoration: none;
+    transition: background 0.15s, color 0.15s;
+  }
+  .quick-link:hover {
+    background: var(--navy);
+    color: var(--white);
+  }
+
+  /* ── STORIES TABLE ── */
+  .stories-table {
+    width: 100%;
+    border-collapse: collapse;
+  }
+  .stories-table th {
+    text-align: left;
+    font-size: var(--label-size);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: var(--muted);
+    padding: 8px 12px 8px 0;
+    border-bottom: 2px solid var(--border);
+  }
+  .stories-table th:last-child {
+    padding-right: 0;
+  }
+  .stories-table td {
+    padding: 14px 12px 14px 0;
+    border-bottom: 1px solid var(--border);
+    vertical-align: top;
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  .stories-table td:last-child {
+    padding-right: 0;
+  }
+  .stories-table tr:hover td {
+    background: var(--hover-row);
+  }
+  .story-topic {
+    font-weight: 600;
+    color: var(--body);
+    white-space: nowrap;
+    padding-right: 20px;
+    width: 220px;
+  }
+  .story-desc {
+    color: var(--secondary);
+  }
+  .story-link {
+    display: inline-block;
+    margin-top: 6px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--navy);
+    text-decoration: none;
+    border-bottom: 1px solid rgba(18,48,108,0.3);
+    padding-bottom: 1px;
+    transition: border-color 0.15s;
+  }
+  .story-link:hover {
+    border-color: var(--navy);
+  }
+
+  /* ── QUESTIONS TO ASK ── */
+  .ask-list {
+    list-style: none;
+  }
+  .ask-item {
+    position: relative;
+    padding: 16px 0 16px 32px;
+    border-bottom: 1px solid var(--border);
+  }
+  .ask-item:first-child {
+    border-top: 1px solid var(--border);
+  }
+  .ask-marker {
+    position: absolute;
+    left: 0;
+    top: 16px;
+    font-size: 16px;
+    font-weight: 700;
+    color: var(--navy);
+    line-height: 1;
+  }
+  .ask-category {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin-bottom: 3px;
+  }
+  .ask-text {
+    font-size: 14px;
+    color: var(--secondary);
+    line-height: 1.6;
+  }
+
+  /* ── RESPONSIVE ── */
+  @media (max-width: 600px) {
+    .header-role { display: none; }
+    .header-type { display: none; }
+    .header-divider { display: none; }
+    .stories-table { display: block; overflow-x: auto; }
+    .story-topic { white-space: normal; width: auto; }
+  }
+</style>
+</head>
+<body>
+
+<!-- STICKY HEADER -->
+<header class="site-header">
+  <div class="header-mark">S</div>
+  <div class="header-info">
+    <span class="header-company">Sequencing.com</span>
+    <span class="header-dot">·</span>
+    <span class="header-role">Senior Lifecycle Marketing Manager</span>
+    <span class="header-divider">|</span>
+    <span class="header-type">Recruiter Screen Prep</span>
+  </div>
+  <div class="fit-badge">FIT: 82/100</div>
+</header>
+
+<!-- PAGE -->
+<main class="page">
+
+  <!-- SHARPEST ANGLE -->
+  <div class="angle-box">
+    <div class="angle-headline">Your Sharpest Angle</div>
+    <p><strong>Behavioral lifecycle systems built for the long arc.</strong> Sequencing's entire retention narrative depends on customers believing their genome keeps rewarding curiosity over time. You've built exactly that kind of lifecycle — not a campaign series, but a system designed to deepen engagement across months and years. TurboTenant, Snagajob, Conduent: the through-line is automated journeys that grow with the user, not ones that fire and forget.</p>
+    <p><strong>Two framing threads to hold onto:</strong></p>
+    <p><strong>B2B2C angle + Snagajob DTC analog.</strong> You have B2B2C from three directions — Conduent (campaigns to employees on behalf of employer benefit), TurboTenant (messaging to tenants for landlord-paying customers), and Snagajob's worker-side lifecycle, which functionally mirrors DTC: sending lifecycle email to individuals to drive engagement with available inventory and return visits. If the vertical gap comes up, you have it covered from multiple angles.</p>
+    <p><strong>The long arc.</strong> People arrive at Sequencing for a specific reason — a hereditary concern, a health question, curiosity. They don't arrive thinking of themselves as someone with an ongoing relationship with their genome. Your career has been solving exactly that problem: taking single-intent signups (one background check, one job application, one HSA account) and building the systems that turn a transaction into a long-term relationship. That's the lifecycle job here.</p>
+  </div>
+
+  <!-- SECTION 1: PRIORITY QUESTIONS -->
+  <section class="section" id="priority">
+    <div class="section-label">Priority Questions</div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false">
+        <span class="q-text">Tell me about yourself.</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </button>
+      <div class="accordion-answer">
+        <p>Keep it tight. Two minutes max. Orient to what you actually do well, then land on why you're a fit.</p>
+        <blockquote>
+          "I'm a lifecycle marketer with about ten years focused on post-signup — activation, engagement, retention, subscription growth. The work I find most interesting is the kind where the value proposition is complicated to explain and the relationship with the product has to be built over time, not just delivered in one moment.
+          <br><br>
+          I've done that in a few different contexts. At Snagajob I came in as their first dedicated worker-side lifecycle hire and built the strategy and infrastructure from scratch — personas, behavioral segmentation, onboarding, the whole thing. At TurboTenant I owned PLG lifecycle end-to-end and built out the event-driven infrastructure in Customer.io. Before that, at Conduent, I was translating complex financial benefit concepts — HSAs, FSA tax mechanics — into communications that actually got people to engage with products they found confusing.
+          <br><br>
+          The through line across a lot of that work is that the audience often showed up for a transactional need — apply for one job, run a background check, figure out their HSA. My job was to take that single-intent moment and build it into an ongoing relationship: a subscription, a recurring product like rent payments, or just a habit of coming back. That's actually a pretty direct match for what Sequencing's lifecycle challenge looks like — someone buys a kit for a specific reason, and the job is enabling them to see how their genome keeps rewarding curiosity over time. That's the kind of problem I find most interesting."
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false">
+        <span class="q-text">Why are you looking / why did you leave TurboTenant?</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </button>
+      <div class="accordion-answer">
+        <blockquote>
+          "I was hired to build lifecycle strategy and run campaigns — and I did that. But the scope grew to include deep data infrastructure work: building platform integrations, managing the event taxonomy, troubleshooting data model issues, working directly with engineering on the stack. I genuinely engaged with that work, and some of it — like the CDP event governance and channel architecture — is directly relevant to what a role like this one needs.
+          <br><br>
+          The issue was structural. Without a dedicated engineering partner, that infrastructure work expanded to fill more than half my time. And my real leverage isn't in maintaining the stack — it's in what the stack enables. I want to be somewhere the setup lets me use both the technical fluency and the strategic focus, which is what this role looks like."
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false">
+        <span class="q-text">What's your biggest career achievement to date?</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </button>
+      <div class="accordion-answer">
+        <blockquote>
+          "At Snagajob, I built a predictive lifecycle campaign that used each worker's job application history to dynamically surface personalized job recommendations. The business hadn't prioritized this — the assumption was that lateral transfer for hourly jobs was high, so personalization wasn't worth the investment. My hypothesis was that this undervalued workers' actual preferences, confidence, and intent. That insight came partly from persona research I'd done, which gave me a much clearer picture of how workers thought about their own job searches. I built the automated journey to deliver personalized recommendations at scale, and the campaign drove 70% more return visits than our average, measured against a control group. It's the kind of work I find most satisfying: challenging an assumption with data, building the system to test it, and seeing it pay off."
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false">
+        <span class="q-text">What are your salary expectations?</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </button>
+      <div class="accordion-answer">
+        <p>State the number confidently, then hand it back to them.</p>
+        <blockquote>
+          "I'm targeting around <span class="salary-pill">$145k</span> — does that work with the range for this role?"
+        </blockquote>
+      </div>
+    </div>
+
+    <!-- QUICK LINKS BAR -->
+    <div class="quick-links" style="margin-top: 24px;">
+      <span class="quick-links-label">Jump to</span>
+      <a href="#other-questions" class="quick-link">Other questions</a>
+      <a href="#stories" class="quick-link">Strongest stories</a>
+      <a href="#questions-to-ask" class="quick-link">Questions to ask</a>
+    </div>
+  </section>
+
+  <!-- SECTION 2: OTHER QUESTIONS -->
+  <section class="section" id="other-questions">
+    <div class="section-label">Other Questions</div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false">
+        <span class="q-text">Walk me through a lifecycle program you built from scratch.</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </button>
+      <div class="accordion-answer">
+        <blockquote>
+          "When I joined Snagajob, all the marketing was essentially employer-facing. Job seekers were getting a handful of transactional messages — application confirmations, that kind of thing — but there was no lifecycle strategy, no segmentation, no onboarding sequence.
+          <br><br>
+          I started with personas. The prior mental model was basically 'they all need a job,' which is true but not useful. I did research to understand how workers actually thought about their job searches — their confidence levels, their preferences, their relationship with the platform. What came out of that was a much clearer picture of different intent profiles, and it immediately changed how I thought about messaging.
+          <br><br>
+          From there I mapped what behaviors we wanted to encourage and what onsite signals predicted readiness for them. One thing I identified early was that most users signed up to apply for a single specific job — not to establish an ongoing relationship with a platform. That insight shaped the entire onboarding sequence. The job wasn't just to confirm their account — it was to actively make the case for why coming back had value: building out their profile, using search, setting up alerts. You had to articulate a reason to return before they'd decided there wasn't one.
+          <br><br>
+          Right out of the gate, the series was generating about $6.40 in revenue per 1,000 emails delivered — compared to $0.41 per 1,000 for the existing non-lifecycle job merchandising email program. So even the early baseline was about 15x more efficient. And it didn't end with launch — I kept testing and optimizing, so the ROI actually increased by 2.5x over the next nine months.
+          <br><br>
+          What I'm most proud of isn't the numbers, it's the foundation. The personas became core to how the broader team prioritized campaigns. The segmentation logic underpinned the predictive campaign I built later that drove 70% more return visits than average. Starting from real behavioral insight rather than demographic assumptions paid off across everything that came after it."
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false">
+        <span class="q-text">How do you translate complex or technical content for a non-expert audience?</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </button>
+      <div class="accordion-answer">
+        <blockquote>
+          "The principle I start from is that messaging needs to lead with the benefit in a way that makes the user recognize themselves in it. When that lands, they lean in — that's when you have permission to go deeper into the detail. If you lead with the mechanism or the technical explanation, you've lost most people before you get to the part they actually care about.
+          <br><br>
+          A good example of this is a program I rebuilt at Conduent. Every year, a chunk of new HSA account holders failed a regulatory identity verification step — which meant their accounts couldn't be funded until they resolved it. The existing outreach was dry, legalistic, and generic. It explained the regulation, listed what was required, and that was it. Response rates were around 5%.
+          <br><br>
+          When I revamped the program, the content transformation was the whole thing. Instead of leading with the compliance requirement, I led with the personal consequence — and I made it specific to each person's situation. If your employer was trying to put money into your account, the message was: your employer is trying to give you money and can't. If you were self-funding, it was: you're losing the tax benefit you signed up for. The required action was also personalized to the actual failure type — most people just needed to confirm a physical address, which is a thirty-second fix, but the old messaging didn't distinguish that from cases that required ID documents. The specificity made it feel solvable rather than bureaucratic.
+          <br><br>
+          Activation rate went from 5% to 27%.
+          <br><br>
+          The underlying principle is the same whether you're writing about identity verification requirements or genomic health reports: people engage when the message is about their situation, not about the system. The science or the regulation is the proof — it's never the lede."
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false">
+        <span class="q-text">Tell me about your experience with CDPs and behavioral event data.</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </button>
+      <div class="accordion-answer">
+        <blockquote>
+          "I've worked with Segment, though not in a full CDP deployment — at TurboTenant we used it to sync between our product and Klaviyo. When I led the migration from Klaviyo to Customer.io, we moved away from Segment entirely and built a direct Postgres sync instead. I was the business process owner on that: I drove decisions about what data came across, which attributes we used for identity, sync frequency, and how we revised the sync logic as accuracy issues surfaced.
+          <br><br>
+          Identity resolution was one of the real challenges. In Klaviyo with Segment, we could define contact identity on the intersection of two attributes — a stable customer ID and an email address. Customer.io required a single identity attribute. A product architecture decision outside of marketing meant we ended up using email as the unique identifier, which caused sync problems whenever users changed email addresses or transferred account access. That's a direct lesson in why identity resolution is a foundational decision — the downstream effects show up everywhere in your audience logic.
+          <br><br>
+          On the behavioral side, I've done a lot of what Segment's computed traits do, just inside Customer.io. I worked with engineering on event taxonomy — defining events like 'fire when a user adds their third property,' designing the payload that comes with it, and using those events to trigger campaigns or build audience segments. I built fairly sophisticated segment logic in Customer.io: rules like 'this event fired twice in the last three days,' combined with attribute conditions, to target users at specific lifecycle moments. That's the same underlying work as computed traits and audience building in a CDP — the tool boundary is just different.
+          <br><br>
+          Segment as a full CDP — centralized identity resolution, audience syncing across destinations — is territory I'd be ramping into. But I already understand the data problems it's solving because I've dealt with those problems directly. I'd expect a fast ramp on the tooling."
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false">
+        <span class="q-text">What's your approach to A/B testing in lifecycle?</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </button>
+      <div class="accordion-answer">
+        <blockquote>
+          "I always think through the hypothesis before I build anything — what I believe, why I believe it, and what a meaningful result looks like. That clarity matters a lot in lifecycle, where the N takes time to accumulate and you can't afford to run a test and then figure out afterward what you were trying to learn.
+          <br><br>
+          The higher-leverage tests in my experience aren't usually about copy. They're structural: is this message reaching the right segment? Is it arriving at the right lifecycle moment? Is the behavioral trigger actually predicting what I think it's predicting? A good segmentation hypothesis — 'users who completed X before day 7 behave differently than users who didn't, and I want to test whether separate messaging actually reflects that' — compounds more than a subject line test. You get durable signal that changes how you build everything that follows.
+          <br><br>
+          That said, copy does matter, especially at the headline level. The best copy decisions come from understanding what users actually care about and how they think about the product — which is really just another form of the same hypothesis-driven work. When I test copy, I'm usually testing a positioning assumption, not just a word choice."
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false">
+        <span class="q-text">How have you used AI in your lifecycle work?</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </button>
+      <div class="accordion-answer">
+        <blockquote>
+          "Differently depending on the problem. Using it to draft copy is table stakes at this point — that's not where the interesting applications are for me.
+          <br><br>
+          The thing I've found more valuable is using AI for pattern recognition and prioritization. At TurboTenant I connected Customer.io's MCP server inside Cursor, which let me do something beyond just tracking campaign performance. I could ask it questions like: 'Look at our transactional messaging in context of this business goal — which of these messages shows the most promise for evolving into a lifecycle campaign?' That's a strategic question, not a reporting question, and getting a fast answer without going through a BI queue changed how I could move.
+          <br><br>
+          I've also used AI to bypass BI queues entirely for exploratory analysis — pulling data via API that I'd normally have to submit a request for, doing the initial exploration myself, and only bringing in data engineering once I knew what I was actually looking for. That keeps cross-functional queues clear and lets me move faster on the analysis side.
+          <br><br>
+          At Snagajob I used AI for persona development, and those personas became core to how the team prioritized campaigns — not just a document that sat in a folder. That's the philosophy I apply across all of it: AI shouldn't just create more volume or bigger outputs. Used well, it creates focus. It helps you prioritize, surface the right questions, and get to good decisions faster."
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false">
+        <span class="q-text">What would you prioritize in your first 90 days?</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </button>
+      <div class="accordion-answer">
+        <blockquote>
+          "First few weeks: listen mode. Talk to Customer Success about where customers get stuck or go quiet. Look at existing flow performance. Understand what behavioral events are already firing and where the data gaps are. Every company I've joined had a theory about where customers were dropping off, and the data usually told a different story.
+          <br><br>
+          From there, I'd prioritize post-purchase activation. That's the highest-risk window in the lifecycle — a customer who buys a kit and never activates isn't recoverable later. And it's also the moment where the framing really matters: customers need to arrive at their first results moment already primed to believe their genome is a living asset, not a one-time report. The activation sequence is doing a lot of work before results even come back.
+          <br><br>
+          Wins there compound fastest and they also build the data foundation — you learn what's actually driving engagement in the early lifecycle, which informs everything downstream."
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false">
+        <span class="q-text">How do you think about building subscription value over a long timeframe?</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </button>
+      <div class="accordion-answer">
+        <blockquote>
+          "The frame I find most useful is relationship versus transaction. A lot of people buy into a product for a specific one-time intent — a single question they want answered, a specific problem they want to solve. The lifecycle job is converting that transactional intent into an ongoing relationship with the product.
+          <br><br>
+          I did this explicitly at TurboTenant. A significant chunk of users came in to run a background check on a prospective tenant — one transaction, and then they were done. My job was drawing them into a deeper relationship with the platform. Rent Payments was the vehicle: collect rent through TurboTenant, and now the platform shows up on a monthly cadence as part of their routine. That monthly touchpoint changed the whole nature of the relationship. They stopped thinking of TurboTenant as 'that background check tool' and started thinking of it as their property management partner.
+          <br><br>
+          The structural analog at Sequencing is clear. Someone buys a kit because they're curious about a hereditary condition, or they want to understand their pharmacogenomics, or their doctor suggested it. They come in with a specific intent. The lifecycle job is making the genome itself feel like a standing relationship — something that keeps rewarding curiosity over time. The 'science keeps advancing' angle is real and it's the right retention narrative, but it only lands if customers have already developed the habit of engaging with their results. You have to build that habit first, in the activation and early lifecycle phase, so that the science update email actually means something when it arrives."
+        </blockquote>
+      </div>
+    </div>
+
+    <div class="accordion-item">
+      <button class="accordion-trigger" onclick="toggle(this)" aria-expanded="false">
+        <span class="q-text">How do you think about channel strategy across email, SMS, push, and in-product messaging?</span>
+        <span class="toggle-icon" aria-hidden="true"></span>
+      </button>
+      <div class="accordion-answer">
+        <blockquote>
+          "Each channel has a different set of tradeoffs, and I think about them along a few dimensions: persistence, real estate, reach, interruptiveness, and user tolerance for promotional content.
+          <br><br>
+          Email is my anchor channel for most lifecycle work. It has the highest reach, it's the least interruptive, and messages are persistent — a user can come back to an onboarding email three days later when they're actually ready to act on it. The tradeoff is inbox competition and the risk of accumulating annoyance if you overmessage.
+          <br><br>
+          In-product messaging is powerful when your targeting is precise, because you can reach someone exactly when the content is contextually relevant. But it's highly interruptive, usually not persistent — if the user dismisses it, it's gone — and it's a bad channel for reaching people who aren't already in the product frequently. I think of it as ideal for contextual tips, not for driving people back to the product.
+          <br><br>
+          SMS has real estate constraints and users have high expectations that messages are genuinely value-added. Low tolerance for anything that feels promotional without a clear reason. I think it works best when timeliness is the actual value — when the user needs to know something now. At TurboTenant, our first SMS campaign came from that exact insight. We were notifying landlords of maintenance issues via email, but a tenant reporting a water leak on Friday afternoon could mean a missed email, a weekend plumber, and compounding damage. I launched SMS for maintenance notifications — email still went out 15 minutes later as a backup — and A/B tested against email-only. The test group responded about 10% more often overall, and 25% more often on weekends. That's the kind of use case where SMS earns its place.
+          <br><br>
+          Push is the channel I'm most cautious about. Zero persistence, so I always pair it with a backup in another channel. Reach is hit-or-miss since many users never grant permission — but the ones who do are initially very receptive, which makes it easy to overuse and erode trust quickly. Deep linking also usually requires engineering resources to do properly. A lot of companies get push wrong by treating it like a broadcast channel. I think of it as a high-trust channel that has to be earned and carefully maintained.
+          <br><br>
+          The through-line across all of it is: the channel choice should follow the nature of the message, not the other way around. What does this message need to do? How urgent is it? Does the user need to be able to return to it? How tolerant is this segment of interruption? The answers usually point pretty clearly to the right channel — or combination."
+        </blockquote>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- SECTION 3: STRONGEST STORIES -->
+  <section class="section" id="stories">
+    <div class="section-label">Strongest Stories</div>
+    <table class="stories-table">
+      <thead>
+        <tr>
+          <th>Question type / topic</th>
+          <th>Story + result</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="story-topic">Translating complex content; benefit-first messaging</td>
+          <td class="story-desc">
+            Conduent HSA Patriot Act activation — rewrote legalistic compliance outreach as personalized, consequence-forward messaging (employer money blocked vs. tax benefit lost). Personalized required actions to each failure type.
+            <span class="pill">5% → 27% activation</span>
+            <br><a class="story-link" href="https://rachelsnotacoder.github.io/Professional/star-stories.html#patriot-act-activation" target="_blank">View full story →</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="story-topic">Built lifecycle program from scratch</td>
+          <td class="story-desc">
+            Snagajob worker-side lifecycle — first hire, built personas, segmentation, and onboarding from zero. Series launched at ~15x RPM vs. existing email program; ROI grew 2.5x over nine months through ongoing optimization.
+            <span class="pill">$6.40 vs $0.41 RPM</span>
+            <span class="pill">2.5x ROI growth</span>
+            <br><a class="story-link" href="https://rachelsnotacoder.github.io/Professional/star-stories.html#job-rec-filtering-20pct" target="_blank">View full story →</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="story-topic">Biggest career achievement; behavioral signal → campaign</td>
+          <td class="story-desc">
+            Snagajob predictive job recommendations — challenged the assumption that hourly workers had high lateral mobility. Built automated journey using application history to surface personalized jobs.
+            <span class="pill">+70% return visits vs. control</span>
+            <br><a class="story-link" href="https://rachelsnotacoder.github.io/Professional/star-stories.html#ai-content-system" target="_blank">View full story →</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="story-topic">A/B testing; hypothesis-driven experimentation</td>
+          <td class="story-desc">
+            TurboTenant Rent Payments retargeting — used migration to Customer.io as an opportunity to test a messaging reframe (fear/loss → automation win). Ran A/B path test within the migration.
+            <span class="pill">+72% Rent Payment adoption</span>
+            <br><a class="story-link" href="https://rachelsnotacoder.github.io/Professional/star-stories.html#rent-payments-72pct" target="_blank">View full story →</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="story-topic">Transactional → relationship; subscription LTV</td>
+          <td class="story-desc">
+            TurboTenant vacancy-to-retention — redesigned screening-to-lease journey to lead with Rent Payments (free, recurring, monthly cadence) instead of a cold $75 upsell, repositioning TurboTenant as a platform worth staying with.
+            <span class="pill">&lt;5% → 40% adoption</span>
+            <br><a class="story-link" href="https://rachelsnotacoder.github.io/Professional/star-stories.html#vacancy-to-retention" target="_blank">View full story →</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="story-topic">AI in lifecycle work; production use</td>
+          <td class="story-desc">
+            Snagajob AI content system — built repeatable prompt setup using top-performing content to surface voice/register rules. Scaled email, blog, and social without adding headcount; pre-Super Bowl email drove measurable lift.
+            <span class="pill">+70% return visits</span>
+            <br><a class="story-link" href="https://rachelsnotacoder.github.io/Professional/star-stories.html#ai-content-system" target="_blank">View full story →</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="story-topic">Analytics; measurement-first optimization</td>
+          <td class="story-desc">
+            Snagajob analytics rebuild — standardized Adobe Analytics event taxonomy, built reporting framework from scratch, diagnosed high-volume spray-and-pray series. Shifting resources toward engagement grew revenue while cutting send volume.
+            <span class="pill">+31% revenue</span>
+            <span class="pill">-22% send volume</span>
+            <br><a class="story-link" href="https://rachelsnotacoder.github.io/Professional/star-stories.html#analytics-rebuild-31pct" target="_blank">View full story →</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="story-topic">Personalization architecture; CDP / segmentation</td>
+          <td class="story-desc">
+            TurboTenant onboarding redesign — chose Liquid scripting over journey splits to deliver size-differentiated content in a single template. Instrumented via dynamic UTM params to measure which content block drove lift, not just overall test winner.
+            <span class="pill">+11% property-add (Marketing)</span>
+            <span class="pill">+5% (Rent Payment)</span>
+            <br><a class="story-link" href="https://rachelsnotacoder.github.io/Professional/star-stories.html#personalization-architecture" target="_blank">View full story →</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="story-topic">Channel strategy; SMS launch</td>
+          <td class="story-desc">
+            TurboTenant first SMS channel — stood up compliance framework and sent first promotional SMS campaign. Launched SMS maintenance notifications, tested against email-only with a clean binary metric (in-product view within 2 hrs).
+            <span class="pill">+10% overall</span>
+            <span class="pill">+25% weekends</span>
+            <br><a class="story-link" href="https://rachelsnotacoder.github.io/Professional/star-stories.html#first-sms-channel" target="_blank">View full story →</a>
+          </td>
+        </tr>
+        <tr>
+          <td class="story-topic">Freemium-to-paid conversion; subscription lifecycle</td>
+          <td class="story-desc">
+            TurboTenant freemium-to-subscriber retargeting — 3-email sequence over 10 days, triggered by behavioral signal (modal engagement), personalized by property count, tenure, self-reported priorities. Tested 50/50 vs. existing flow.
+            <span class="pill">+15% subscription conversion</span>
+            <br><a class="story-link" href="https://rachelsnotacoder.github.io/Professional/star-stories.html#freemium-conversion-15pct" target="_blank">View full story →</a>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- SECTION 4: QUESTIONS TO ASK -->
+  <section class="section" id="questions-to-ask">
+    <div class="section-label">Questions to Ask</div>
+    <ul class="ask-list">
+      <li class="ask-item">
+        <span class="ask-marker">?</span>
+        <div class="ask-category">Team structure</div>
+        <div class="ask-text">Can you tell me more about the team structure — who does this role sit with and report to, and who does it collaborate with most closely day to day?</div>
+      </li>
+      <li class="ask-item">
+        <span class="ask-marker">?</span>
+        <div class="ask-category">Role context</div>
+        <div class="ask-text">The JD reads like this is a role with significant scope to build and own — is this a new headcount or a backfill? I'm guessing new from how the role is framed, but I want to confirm.</div>
+      </li>
+      <li class="ask-item">
+        <span class="ask-marker">?</span>
+        <div class="ask-category">Process</div>
+        <div class="ask-text">What does the interview process look like from here? Who else would I be meeting, and is there a skills assessment or a project involved?</div>
+      </li>
+      <li class="ask-item">
+        <span class="ask-marker">?</span>
+        <div class="ask-category">Remote & team location</div>
+        <div class="ask-text">Where is the team mostly based? I saw it's fully remote — are there any in-person expectations, like offsites or team gatherings?</div>
+      </li>
+      <li class="ask-item">
+        <span class="ask-marker">?</span>
+        <div class="ask-category">Company trajectory</div>
+        <div class="ask-text">Sequencing is described as profitable and venture-backed, which is an interesting combination. What can you tell me about where the company sees itself heading — is the current thinking oriented around continued growth, a potential acquisition, an IPO path? I'm trying to understand the growth trajectory and what that means for the team.</div>
+      </li>
+    </ul>
+  </section>
+
+</main>
+
+<script>
+  function toggle(trigger) {
+    const item = trigger.closest('.accordion-item');
+    const isOpen = item.classList.contains('open');
+    item.classList.toggle('open');
+    trigger.setAttribute('aria-expanded', !isOpen);
+  }
+</script>
+
+</body>
+</html>
